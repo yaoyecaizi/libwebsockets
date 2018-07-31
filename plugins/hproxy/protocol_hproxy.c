@@ -133,7 +133,7 @@ mention(struct lws_protocols *pcol, struct lws_vhost *vh, const char *path)
 		return MENTION_FAILED;
 	memset(req, 0, sizeof(*req));
 
-	strcpy(req->filepath, vhd->cache_dir);
+	lws_snprintf(req->filepath, 128, "%s", vhd->cache_dir);
 	if (req->filepath[strlen(req->filepath) - 1] != '/')
 		strcat(req->filepath, "/");
 	if (path_to_cache_filename(path, req->filepath + strlen(req->filepath),
